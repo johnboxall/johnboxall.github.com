@@ -1,4 +1,11 @@
-// Mouse Class tracks the mouse acceleration.
+/**
+ * iPhone Scroll Demo in jQuery
+ * 
+ * Copyright (c) 2008 John Boxall (www.twitter.com/johnboxall)
+ * Licensed under the MIT (MIT-LICENSE.txt)  licenses.
+ * 
+ */
+ 
 var MouseY = {
 
     init: function(context) {
@@ -43,7 +50,7 @@ var MouseY = {
     }
 };
 
-// iPhone class controls the iframe position.
+
 var iPhone = {
 
     init: function() {
