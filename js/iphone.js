@@ -49,7 +49,7 @@ var iPhone = {
     init: function() {
         this.frame = $('#iframe').get(0);
         // When the iframe is loaded call the iframe funcion.
-        $(this.frame).bind("load", function() {this.iframe()});
+        $(this.frame).bind("load", function() {iPhone.iframe()});
 
         // Keep track of the current window acceleration / velocity.
         this._windowAcceleration = 0;
