@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+<title>getStyle test</title>
+</head>
+<body>
+<div id="unstyled">An unstyled div.</div>
+
+
+<script type="text/javascript">
+
+function getStyle(elem, name) {
+    // J/S Pro Techniques p136
+    if (elem.style[name]) {
+        return elem.style[name];
+    } else if (elem.currentStyle) {
+        return elem.currentStyle[name];
+    }
+    else if (document.defaultView && document.defaultView.getComputedStyle) {
+        name = name.replace(/([A-Z])/g, "-$1");
+        name = name.toLowerCase();
+        s = document.defaultView.getComputedStyle(elem, "");
+        return s && s.getPropertyValue(name);
+    } else {
+        return null;
+    }
+}
+
+
+var styles = ['textAlign','fontStyle','fontWeight'];
+var elem = document.getElementById("unstyled");
+
+for (i in styles) {
+    var property = styles[i];
+    var value = getStyle(elem, property);
+    console.log(property, ":", value);
+}
+
+</script>
+
+</body>
+</html>
