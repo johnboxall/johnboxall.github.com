@@ -6,6 +6,7 @@
 <body>
 <div id="unstyled">An unstyled div.</div>
 
+<hr />
 
 <script type="text/javascript">
 
@@ -33,7 +34,7 @@ var elem = document.getElementById("unstyled");
 for (i in styles) {
     var property = styles[i];
     var value = getStyle(elem, property);
-    console.log(property, ":", value);
+    document.write("<p>" + property + " : " + value + "</p>");
 }
 
 </script>
