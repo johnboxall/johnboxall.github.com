@@ -4,18 +4,20 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(function() {
+    $.fn.sort = function() {return this.pushStack(jQuery.makeArray([].sort.apply(this, arguments)));}; 
 
-    // Load the repos.
-    var ENDPOINT = "http://github.com/api/v1/json/johnboxall";
-    $.getJSON(ENDPOINT,
-        function(data) {
-        $.each(data.items, function(, item) {
-            $("</li>").html(item).appendTo("#repos");
-        });    
+    var ENDPOINT = "http://github.com/api/v1/json/johnboxall?callback=?";
+    $.getJSON(ENDPOINT, function(data) {
+        $("#projects li").remove();
+        data.user.repositories.sort(function(a, b) {return a.name > b.name;});
+        $.each(data.user.repositories, function(i, repos) {
+            if (!repos.private) {
+                $("<li>").html($("<a>").attr("href", repos.url).html(repos.name))
+                         .append(" - " + repos.description)
+                         .appendTo("#projects");
+            }
+        });
     });
-
-
-
 });
 </script>
 </head>
@@ -29,9 +31,9 @@ $(function() {
     <li><a href="/iphone.html">iPhone scroll effect in an iframe</a></li>
 </ul>
 
-<h3>Django</h3>
-<ul id="repos">
-    <li><a href="http://github.com/johnboxall/django-tenderize/tree">Tenderize</a> - Django pluggable for Tender</a></li>
+<h3>Projects</h3>
+<ul id="projects">
+    <li>Loading...</li>
 </ul>
     
 <script type="text/javascript">
