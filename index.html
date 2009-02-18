@@ -1,8 +1,24 @@
 <html>
 <head>
-<title>John Boxall</title>
-</head>
+<title>John Boxall. Genius. Billionaire. Playboy. Hacker.</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
 
+    // Load the repos.
+    var ENDPOINT = "http://github.com/api/v1/json/johnboxall";
+    $.getJSON(ENDPOINT,
+        function(data) {
+        $.each(data.items, function(, item) {
+            $("</li>").html(item).appendTo("#repos");
+        });    
+    });
+
+
+
+});
+</script>
+</head>
 
 <h1><a href="http://www.twitter.com/johnboxall">John Boxall</a></h1>
 
@@ -14,7 +30,7 @@
 </ul>
 
 <h3>Django</h3>
-<ul>
+<ul id="repos">
     <li><a href="http://github.com/johnboxall/django-tenderize/tree">Tenderize</a> - Django pluggable for Tender</a></li>
 </ul>
     
