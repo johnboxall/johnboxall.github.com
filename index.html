@@ -49,6 +49,10 @@ h3 {
 }
 
 h4 {
+ position: absolute;
+ top:200px;
+ color: #666;
+
 }
 
 h5 {
@@ -113,6 +117,20 @@ p.download {
  display:block;
  margin:10px;
  padding-right:80px;
+}
+
+/* POP */
+h3[name="pop"] {
+ position:absolute;
+ top:75px;
+ left:695px;
+ padding:55px 0 0 95px;
+ background:url(img/cake2.png) no-repeat top left;
+}
+
+
+div#pop.project h4 {
+ left:950px;
 }
 
 /*
@@ -205,14 +223,14 @@ $("p.editable").pie({
     </div>
 </div>
 
-<div class="project" id="pie">
-    <h3 name="pie">PIE</h3>
-    <h4>"Perfect Edit in Place for jQuery"</h4>
+<div class="project" id="pop">
+    <h3 name="pop">POP</h3>
+    <h4>"Carbonated pop bubbles for jQuery"</h4>
     <div>
         <p>There are many in edit in place JavaScript plugins on the web but this one is perfect.</p>
-        <p class="download" name="pie-download"><a href="js/jquery.pie.js">Download</a></p>
-        <h5 name="pie-demo">Demo</h5>
-        <p class="editable" id="pie">Damn straight I'm editable. Click me.</p>
+        <p class="download" name="pop-download"><a href="js/jquery.pop.js">Download</a></p>
+        <h5 name="pop-demo">Demo</h5>
+        <p class="editable" id="pop">Hover over me please.</p>
         <h5>JavaScript</h5>
         <pre>$("p.click_to_edit").pie({
 
