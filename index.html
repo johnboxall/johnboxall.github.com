@@ -8,14 +8,112 @@
 <style>
 
 body {
-}
-h1 a{
-  color:#69D2E7;
-  font-size:172px;
-  z-index:-1;
-  position:absolute;
+ width:2500px;
+ font-family:Georgia,"Times New Roman",Times,serif;
+ background-color:#eee;
+ color:#333;
 }
 
+a {
+ color:#06e;
+ padding:1px;
+}
+
+a:hover{
+ background-color:#06e;
+ color:white;
+}
+
+h1 {
+ margin:0;
+ padding:0;
+ font-size:8em;
+ font-weight:bold;
+}
+
+h1 a{
+ position:absolute;
+ top:-20px;
+ left:10px;
+}
+
+h2 {
+ position:absolute;
+ top: 120px;
+ left: 150px;
+ font-size:4em;
+}
+
+h3 {
+ font-size:4em;
+}
+
+h4 {
+}
+
+h5 {
+ display:block;
+ font-size:1.5em;
+ margin:10px 0;
+ background-color: #feb;
+ padding:6px;
+ clear:both;
+
+ -moz-border-radius:4px;
+ -webkit-border-radius:4px; 
+}
+
+pre, tt {
+ font-family:monaco,"courier new",mono;
+}
+
+pre {
+ margin:12px 0;
+ padding:6px;
+ color:#FFFFFF;
+ background-color:#333;
+ border-bottom:4px solid #222;
+ border-right:4px solid #222;
+ -moz-border-radius:4px;
+ -webkit-border-radius:4px;
+}
+
+div.project {
+ float:left;
+ width:620px;
+ border:1px solid #aaa;
+ background:#fff;
+ padding:20px;
+ margin:180px 20px 20px 0;
+}
+
+div.project div {
+ margin:70px 0 0 0;
+}
+
+
+/* PIE */
+h3[name="pie"] {
+ position:absolute;
+ top:75px;
+ left:15px;
+ padding:55px 0 0 95px;
+ background:url(img/cake2.png) no-repeat top left;
+}
+
+div#pie.project h4 {
+ position: absolute;
+ top:200px;
+ left:250px;
+ color: #666;
+}
+
+p.download {
+ text-align:right;
+ display:block;
+ margin:10px;
+ padding-right:80px;
+}
 
 /*
 A7DBD8
@@ -27,14 +125,13 @@ FA6900
 
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.pie.js"></script>
 <script type="text/javascript">
 var d;
 $(function() {
 
 var GITHUB = "http://github.com/api/v1/json/johnboxall?callback=?",
-    TWITTER = "http://twitter.com/statuses/user_timeline/johnboxall.json?callback=?",
-    STATUS = "http://twitter.com/johnboxall/status/"  // + ID.
-
+    TWITTER = "http://twitter.com/statuses/user_timeline/johnboxall.json?callback=?";
 
 $.fn.sort = function() {return this.pushStack(jQuery.makeArray([].sort.apply(this, arguments)));}; 
 
@@ -46,7 +143,7 @@ $.getJSON(GITHUB, function(data) {
             reposHTML += '<li><a href="'+repos.url+'">'+repos.name+'</a> - '+repos.description+'</li>';
         }
     });
-    $("#projects").replaceWith('<ul id="projects">'+reposHTML+'</ul>');
+    $("ul#repos").replaceWith('<ul id="repos">'+reposHTML+'</ul>');
 });
 
 $.getJSON(TWITTER, function(tweets) {
@@ -58,6 +155,12 @@ $.getJSON(TWITTER, function(tweets) {
 });
 
 
+$("p.editable").pie({
+    class: 'editing',
+    submit: function(x) {alert("Name: "+x.name+" Value: "+x.value);}
+});
+
+
 });
 </script>
 </head>
@@ -66,18 +169,127 @@ $.getJSON(TWITTER, function(tweets) {
 <h1><a href="http://www.twitter.com/johnboxall">John Boxall</a></h1>
 <h2>Genius. Billionaire. Playboy. Hacker.</h2>
 
-<h2>The Code</h2>
+<div class="project" id="pie">
+    <h3 name="pie">PIE</h3>
+    <h4>"Perfect Edit in Place for jQuery"</h4>
+    <div>
+        <p>There are many in edit in place JavaScript plugins on the web but this one is perfect.</p>
+        <p class="download" name="pie-download"><a href="js/jquery.pie.js">Download</a></p>
+        <h5 name="pie-demo">Demo</h5>
+        <p class="editable" id="pie">Damn straight I'm editable. Click me.</p>
+        <h5>JavaScript</h5>
+        <pre>$("p.click_to_edit").pie({
+
+    // Class to apply to the inplace input.
+    class: 'editing',  
+    
+    // Attribute used to name the inplace input.
+    name: 'id',
+    
+    // Event that triggers the inplace input.
+    event: 'click',
+    
+    // Function that returns the element to be edited.
+    edit: function(x) {
+        return x;
+    },
+    
+    // Function to be called when inplace input is submitted.
+    submit: function(x) {
+        alert("Name: "+x.name+" Value: "+x.value);
+    }
+    
+});</pre>
+        <h5>HTML</h5>
+        <pre>&lt;p class="editable" id="pie"&gt;Damn straight I'm editable.&lt;/p&gt;</pre>
+    </div>
+</div>
+
+<div class="project" id="pie">
+    <h3 name="pie">PIE</h3>
+    <h4>"Perfect Edit in Place for jQuery"</h4>
+    <div>
+        <p>There are many in edit in place JavaScript plugins on the web but this one is perfect.</p>
+        <p class="download" name="pie-download"><a href="js/jquery.pie.js">Download</a></p>
+        <h5 name="pie-demo">Demo</h5>
+        <p class="editable" id="pie">Damn straight I'm editable. Click me.</p>
+        <h5>JavaScript</h5>
+        <pre>$("p.click_to_edit").pie({
+
+    // Class to apply to the inplace input.
+    class: 'editing',  
+    
+    // Attribute used to name the inplace input.
+    name: 'id',
+    
+    // Event that triggers the inplace input.
+    event: 'click',
+    
+    // Function that returns the element to be edited.
+    edit: function(x) {
+        return x;
+    },
+    
+    // Function to be called when inplace input is submitted.
+    submit: function(x) {
+        alert("Name: "+x.name+" Value: "+x.value);
+    }
+    
+});</pre>
+        <h5>HTML</h5>
+        <pre>&lt;p class="editable" id="pie"&gt;Damn straight I'm editable.&lt;/p&gt;</pre>
+    </div>
+</div>
+
+
+<div class="project" id="pie">
+    <h3 name="pie">PIE</h3>
+    <h4>"Perfect Edit in Place for jQuery"</h4>
+    <div>
+        <p>There are many in edit in place JavaScript plugins on the web but this one is perfect.</p>
+        <p class="download" name="pie-download"><a href="js/jquery.pie.js">Download</a></p>
+        <h5 name="pie-demo">Demo</h5>
+        <p class="editable" id="pie">Damn straight I'm editable. Click me.</p>
+        <h5>JavaScript</h5>
+        <pre>$("p.click_to_edit").pie({
+
+    // Class to apply to the inplace input.
+    class: 'editing',  
+    
+    // Attribute used to name the inplace input.
+    name: 'id',
+    
+    // Event that triggers the inplace input.
+    event: 'click',
+    
+    // Function that returns the element to be edited.
+    edit: function(x) {
+        return x;
+    },
+    
+    // Function to be called when inplace input is submitted.
+    submit: function(x) {
+        alert("Name: "+x.name+" Value: "+x.value);
+    }
+    
+});</pre>
+        <h5>HTML</h5>
+        <pre>&lt;p class="editable" id="pie"&gt;Damn straight I'm editable.&lt;/p&gt;</pre>
+    </div>
+</div>
+
+<!--
+
 
 <h3>Snips</h3>
-<ul>
+<ul id="snips">
     <li><a href="http://gist.github.com/65606">Canadian Payroll Calculator: Find out how much you owe the man with Python</a></li>
     <li><a href="http://gist.github.com/74826">Github: Grab your repos with Javascript</a></li>
     <li><a href="http://gist.github.com/41118">Lighthouse: Move tickets to next milestone with Ruby</a></li>
-
 </ul>
 
 <h3>Repos</h3>
-<ul id="projects">
+<ul id="repos">
     <li>Loading...</li>
 </ul>
 
@@ -85,6 +297,9 @@ $.getJSON(TWITTER, function(tweets) {
 <ul id="tweets">
     <li>Loading...</li>
 </ul>
+
+
+-->
 
     
 <script type="text/javascript">
